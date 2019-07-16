@@ -31,7 +31,7 @@ import { $, app, elasticsearch } from "@dekproject/scope";
 
 $.wait("elasticsearch").then(() => {
     elasticsearch.cluster.health({}, (err,resp,status) => {  
-        console.log("-- Client Health --", resp);
+        console.log(resp);
     });
 });
 ```
