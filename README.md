@@ -19,7 +19,15 @@ $ nano .env
 In the .env file add the following settings
 
 ```
-ELASTICSEARCH_HOST = http://localhost:9200,http://localhost:9200
+ELASTICSEARCH_VERSION=7
+ELASTICSEARCH_HOST=http://localhost:9200
+```
+
+For applications with cluster usage in Elasticsearch
+
+```
+ELASTICSEARCH_VERSION=7
+ELASTICSEARCH_HOST=http://localhost:9200,http://localhost:9201
 ```
 
 ## Usage
@@ -30,7 +38,7 @@ Using in the standard DEK skeleton
 import { $, app, elasticsearch } from "@dekproject/scope";
 
 $.wait("elasticsearch").then(() => {
-    elasticsearch.cluster.health({}, (err,resp,status) => {  
+    elasticsearch.cat.health({}, (err,resp,status) => {
         console.log(resp);
     });
 });

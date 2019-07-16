@@ -1,6 +1,6 @@
 {
     "name": "@dekproject/elasticsearch",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Elasticsearch interface plugin for DEK",
     "main": "./build/index.js",
     "scripts": {
@@ -22,7 +22,9 @@
         "elasticsearch"
     ],
     "dependencies": {
-        "elasticsearch": "^16.3.0"
+        "elasticsearch": "^16.3.0",
+        "es6": "npm:@elastic/elasticsearch@^6.7.0",
+        "es7": "npm:@elastic/elasticsearch@^7.0.0"
     },
     "devDependencies": {
         "@dekproject/scope": "^1.1.4",

@@ -7,7 +7,7 @@ import { $, plugins, elasticsearch } from "@dekproject/scope";
     await plugins("./build");
 
     $.wait("elasticsearch").then(() => {
-        elasticsearch.cluster.health({}, (err,resp,status) => {
+        elasticsearch.cat.health({}, (err,resp,status) => {
             console.log(resp);
         });
     }).catch((err) => {
