@@ -1,0 +1,34 @@
+{
+    "name": "@dekproject/elasticsearch",
+    "version": "1.0.0",
+    "description": "Elasticsearch interface plugin for DEK",
+    "main": "./build/index.js",
+    "scripts": {
+        "dev": "npm run build && babel-node sample --presets env",
+        "build": "babel src -s -D -d build --presets env"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/dekproject/elasticsearch.git"
+    },
+    "author": "Andre Ferreira <andre@vigiadepreco.com.br>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/dekproject/elasticsearch/issues"
+    },
+    "homepage": "https://github.com/dekproject/elasticsearch#readme",
+    "keywords": [
+        "dek",
+        "elasticsearch"
+    ],
+    "dependencies": {
+        "elasticsearch": "^16.3.0"
+    },
+    "devDependencies": {
+        "@dekproject/scope": "^1.1.4",
+        "babel-cli": "^6.26.0",
+        "babel-preset-env": "^1.7.0",
+        "dotenv": "^6.2.0",
+        "mocha": "^6.0.1"
+    }
+}
