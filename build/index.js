@@ -22,10 +22,13 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 exports.default = function () {
     try {
         var env = process.env;
         var hosts = env.ELASTICSEARCH_HOST.indexOf(",") > -1 ? env.ELASTICSEARCH_HOST.split(",") : env.ELASTICSEARCH_HOST;
+        hosts = [].concat(_toConsumableArray(new Set(hosts)));
         var client = null;
 
         switch (env.ELASTICSEARCH_VERSION) {
@@ -43,7 +46,7 @@ exports.default = function () {
 
         _scope.$.set("elasticsearch", client);
     } catch (e) {
-        console.log('[ Elasticsearch ] - ' + e.message);
+        console.log('[ Elasticsearch ] - ' + e.message, e);
     }
 };
 //# sourceMappingURL=index.js.map

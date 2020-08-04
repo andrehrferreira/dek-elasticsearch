@@ -7,6 +7,8 @@ export default () => {
     try{
         let env = process.env;
         let hosts = (env.ELASTICSEARCH_HOST.indexOf(",") > -1) ? env.ELASTICSEARCH_HOST.split(",") : env.ELASTICSEARCH_HOST;
+        hosts = [...new Set(hosts)];//Fix duplicate hosts (@farchanjo)
+
         let client = null;
 
         switch(env.ELASTICSEARCH_VERSION){
@@ -22,7 +24,7 @@ export default () => {
                 else
                     client = new Client7.Client( { node: hosts }); 
             break;
-            default: client = new Elasticsearch.Client( { hosts: hosts }); break;
+            default: client = new Elasticsearch.Client( { hosts: hosts } ); break;
         }
 
         if(process.env.DEBUG == 'true')
@@ -31,6 +33,6 @@ export default () => {
         $.set("elasticsearch", client);
     }
     catch (e) {
-        console.log(`[ Elasticsearch ] - ${e.message}`);
+        console.log(`[ Elasticsearch ] - ${e.message}`, e);
     }
 }
