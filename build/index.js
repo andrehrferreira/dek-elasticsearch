@@ -26,20 +26,22 @@ exports.default = function () {
     try {
         var env = process.env;
         var hosts = env.ELASTICSEARCH_HOST.indexOf(",") > -1 ? env.ELASTICSEARCH_HOST.split(",") : env.ELASTICSEARCH_HOST;
-        var elasticsearch = null;
+        var client = null;
 
         switch (env.ELASTICSEARCH_VERSION) {
             case "6":
-                elasticsearch = new Client6.Client({ node: hosts });break;
+                if (Array.isArray(hosts)) client = new Client6.Client({ nodes: hosts });else client = new Client6.Client({ node: hosts });
+                break;
             case "7":
-                elasticsearch = new Client7.Client({ node: hosts });break;
+                if (Array.isArray(hosts)) client = new Client7.Client({ nodes: hosts });else client = new Client7.Client({ node: hosts });
+                break;
             default:
-                elasticsearch = new _elasticsearch2.default.Client({ hosts: hosts });break;
+                client = new _elasticsearch2.default.Client({ hosts: hosts });break;
         }
 
         if (process.env.DEBUG == 'true') console.log('[ Elasticsearch ] - Elasticsearch successfully signed');
 
-        _scope.$.set("elasticsearch", elasticsearch);
+        _scope.$.set("elasticsearch", client);
     } catch (e) {
         console.log('[ Elasticsearch ] - ' + e.message);
     }
