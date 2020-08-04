@@ -28,7 +28,8 @@ exports.default = function () {
     try {
         var env = process.env;
         var hosts = env.ELASTICSEARCH_HOST.indexOf(",") > -1 ? env.ELASTICSEARCH_HOST.split(",") : env.ELASTICSEARCH_HOST;
-        hosts = [].concat(_toConsumableArray(new Set(hosts)));
+        hosts = [].concat(_toConsumableArray(new Set(hosts))); //Fix duplicate hosts (@farchanjo)
+
         var client = null;
 
         switch (env.ELASTICSEARCH_VERSION) {
